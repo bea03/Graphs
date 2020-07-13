@@ -13,19 +13,23 @@ class Graph:
         """
         Add a vertex to the graph.
         """
-        pass  # TODO
+        # TODO
+        self.vertices[vertex_id] = set()     
 
     def add_edge(self, v1, v2):
         """
         Add a directed edge to the graph.
         """
-        pass  # TODO
+        if v1 in self.vertices and v2 in self.vertices:
+            self.vertices[v1].add(v2)
+        else:
+            raise IndexError("Not exist")
 
     def get_neighbors(self, vertex_id):
         """
         Get all neighbors (edges) of a vertex.
         """
-        pass  # TODO
+        return self.vertices[vertex_id]
 
     def bft(self, starting_vertex):
         """
@@ -46,6 +50,7 @@ class Graph:
             current_node = q.dequeue()
             #if we haven't visited node yet,
             if current_node not in visited:
+                print(current_node)
                 #mark as visited
                 visited.add(current_node)
                 #get its neighbors
@@ -61,14 +66,24 @@ class Graph:
         """
         pass  # TODO
         #make a stack
+        s = Stack()
         #push on our starting node
+        s.push(starting_vertex)
         #make a set to track if we've been here before
+        visited = set()
         #while our stack isn't empty
+        while s.size() > 0:
         #pop off w/e on top, this is current node
+            current_node = s.pop()
         #if havn't visited
+            if current_node not in visited:
         #mark as visited
+                print(current_node)
+                visited.add(current_node)
         #get its neighbors
         #for each neighbor add to stack
+                for neighbor in self.get_neighbors(current_node):
+                    s.push(neighbor)
 
     def dft_recursive(self, starting_vertex):
         """
