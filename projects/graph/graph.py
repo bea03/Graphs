@@ -32,7 +32,27 @@ class Graph:
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        #make queue
+        q = Queue()
+        #enqueue our starting node
+        q.enqueue(starting_vertex)
+
+        #make a set to track if we've been here before
+        visited = set()
+        
+        #while queue isn't empty
+        while q.size() > 0:
+            #dequeu whatever's at the front of the line, this current_node
+            current_node = q.dequeue()
+            #if we haven't visited node yet,
+            if current_node not in visited:
+                #mark as visited
+                visited.add(current_node)
+                #get its neighbors
+                neighbors = self.get_neighbors()
+                #for each of the neighbors add to queue
+                for neighbor in neighbors:
+                    q.enqueue(neighbor)
 
     def dft(self, starting_vertex):
         """
@@ -40,6 +60,15 @@ class Graph:
         beginning from starting_vertex.
         """
         pass  # TODO
+        #make a stack
+        #push on our starting node
+        #make a set to track if we've been here before
+        #while our stack isn't empty
+        #pop off w/e on top, this is current node
+        #if havn't visited
+        #mark as visited
+        #get its neighbors
+        #for each neighbor add to stack
 
     def dft_recursive(self, starting_vertex):
         """
@@ -48,7 +77,7 @@ class Graph:
 
         This should be done using recursion.
         """
-        pass  # TODO
+        pass # TODO
 
     def bfs(self, starting_vertex, destination_vertex):
         """
