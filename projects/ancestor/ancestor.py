@@ -2,6 +2,7 @@
     nodes: people
     edges: when child has a parent
     DFS
+    add stack to this as well
 '''
 class Graph:
         def __init__(self):
@@ -47,10 +48,19 @@ def earliest_ancestor(ancestors, starting_node):
     visited = set()
 
     s.push([starting_node])
+    
+    longest_path = []
+    #no ancestor
+    aged_one = -1
 
     while s.size() > 0:
         path = s.pop()
         current_node = path[-1]
+        
+        #if path longer or equal but the value is smaller
+        if len(path) > len(longest_path) or (len(path) == len(longest_path) and current_node < aged_one):
+            longest_path = path
+            aged_one = longest_path[-1]
 
         if current_node not in visited:
             visited.add(current_node)
@@ -60,3 +70,7 @@ def earliest_ancestor(ancestors, starting_node):
             for parent in parents:
                 new_path = path + [parent]
                 s.push(new_path)
+    
+    return longest_path[-1]
+
+#as we pass through, keep track of longest path seen so far
